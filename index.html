@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <h3>Документы</h3>
+    <input class="search" placeholder="Поиск" />
+    <div data-bind="foreach: categories">
+        <div class="box">
+            <span data-bind="text: title"></span>
+            <span data-bind="foreach: circles()">
+                <span class="circle" data-bind="style: { backgroundColor: color }"></span>
+            </span>
+            <!-- <div data-bind="foreach: children"></div> -->
+        </div>
+    </div>
+
+
+</body>
+<script src="./ko.js"></script>
+<script src="./index.js"></script>
+</html>
