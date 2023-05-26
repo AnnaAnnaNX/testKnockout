@@ -1,7 +1,6 @@
-console.log(1);
-
 const arr = [
     {
+        id: 1,
         mainCategory: true,
         title: 'Обязательные для всех',
         circles: ko.observableArray([{color: 'pink'}, {color: 'yellow'}, {color: 'orange'}]),
@@ -10,6 +9,7 @@ const arr = [
         open: true,
         children: ko.observableArray([
             {
+                id: 4,
                 mainCategory: false,
                 title: 'Паспорт',
                 circles: ko.observableArray([{color: 'blue'}]),
@@ -17,6 +17,7 @@ const arr = [
                 comment: 'Для всех',
             },
             {
+                id: 5,
                 mainCategory: false,
                 title: 'ИНН',
                 circles: [],
@@ -26,6 +27,7 @@ const arr = [
         ])
     },   
     {
+        id: 2,
         mainCategory: true,
         title: 'Обязательные для трудоустройства',
         circles: ko.observableArray([]),
@@ -34,6 +36,7 @@ const arr = [
         children: ko.observableArray([])
     },    
     {
+        id: 3,
         mainCategory: true,
         title: 'Специальные',
         circles: ko.observableArray([]),
@@ -47,6 +50,46 @@ function ViewModel() {
     var self = this;
 
     self.categories = ko.observableArray(arr);
+
+    self.relocate = function(id, parentId, newParentId, newPrevId) {
+        id = 1; parentId=null; newParentId=null; newPrevId = 3;
+        var categoriesVal = self.categories();
+
+        let obj = null;console.log(102)
+        if (parentId) {
+            //
+        } else {
+            categoriesVal.forEach(el => {
+                if (el.id === id) {
+                    obj = el
+                }
+                // return el.id !== id;
+            });
+        }
+
+        if (parentId) {
+            //
+        } else {
+            if (!newPrevId) throw new Error('newParentId and newPrevId are empty');
+            let index = null;
+            categoriesVal.forEach((el, i) => {
+                if (el.id === newPrevId) {
+                    index = i;
+                }
+            });
+            
+            if (index === null) {
+                throw new Error('newParentId and newPrevId are empty');
+            }
+            categoriesVal = [
+                ...categoriesVal.slice(0, index - 1),
+                obj,
+                ...categoriesVal.slice(index + 1, categoriesVal.length)
+            ]            
+        }
+
+        self.categories(categoriesVal);
+    };
 }
 
 ko.applyBindings(new ViewModel());
