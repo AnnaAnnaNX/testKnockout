@@ -20,7 +20,7 @@ const arr = [
                 id: 5,
                 mainCategory: false,
                 title: 'ИНН',
-                circles: [],
+                circles: ko.observableArray([]),
                 required: true,
                 comment: 'Для всех',
             },

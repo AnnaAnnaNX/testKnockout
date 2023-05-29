@@ -16,7 +16,14 @@
             <span data-bind="foreach: circles()">
                 <span class="circle" data-bind="style: { backgroundColor: color }"></span>
             </span>
-            <!-- <div data-bind="foreach: children"></div> -->
+            <div data-bind="foreach: children">
+                <div class="box">
+                    <span data-bind="text: title"></span>
+                    <span data-bind="foreach: circles()">
+                        <span class="circle" data-bind="style: { backgroundColor: color }"></span>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
     <button data-bind="click: relocate">relocate</button>
