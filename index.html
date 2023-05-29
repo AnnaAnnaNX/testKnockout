@@ -11,18 +11,42 @@
     <h3>Документы</h3>
     <input class="search" placeholder="Поиск" />
     <div data-bind="foreach: categories">
-        <div class="box">
-            <span data-bind="text: title"></span>
-            <span data-bind="foreach: circles()">
-                <span class="circle" data-bind="style: { backgroundColor: color }"></span>
-            </span>
-            <div data-bind="foreach: children">
-                <div class="box">
+        <div data-bind="attr: { draggable: draggable, class: draggableClass }">
+            <div
+                class="box parent"
+            >
+                <span>    
                     <span data-bind="text: title"></span>
                     <span data-bind="foreach: circles()">
                         <span class="circle" data-bind="style: { backgroundColor: color }"></span>
                     </span>
-                </div>
+                </span>
+                <span>
+                    <span class="action-button edit-button"></span>
+                    <span class="action-button delete-button"></span>
+                    <span
+                        class="action-button move-button"
+                        data-bind="click: $root.setDraggable($data)"
+                    ></span>
+                </span>
+            </div>
+        </div>
+        <div data-bind="foreach: children">
+            <div class="child box">
+                <span>
+                    <span data-bind="text: title"></span>
+                    <span data-bind="foreach: circles()">
+                        <span class="circle" data-bind="style: { backgroundColor: color }"></span>
+                    </span>
+                </span>
+                <span>
+                    <span class="action-button edit-button"></span>
+                    <span class="action-button delete-button"></span>
+                    <span
+                        class="action-button move-button"
+                        data-bind="click: $root.setDraggable">
+                    </span>
+                </span>
             </div>
         </div>
     </div>

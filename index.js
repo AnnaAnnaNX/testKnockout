@@ -15,6 +15,8 @@ const obj = {
             required: false,
             comment: 'Документы, обязательные для всех сотрудников',
             open: true,
+            draggable: true,
+            draggableClass: 'draggable',
             children: ko.observableArray([
                 {
                     id: 4,
@@ -23,6 +25,8 @@ const obj = {
                     circles: ko.observableArray([{color: 'blue'}]),
                     required: true,
                     comment: 'Для всех',
+                    draggable: false,
+                    draggableClass: '',
                 },
                 {
                     id: 5,
@@ -31,6 +35,8 @@ const obj = {
                     circles: ko.observableArray([]),
                     required: true,
                     comment: 'Для всех',
+                    draggable: false,
+                    draggableClass: '',
                 },
             ])
         },   
@@ -41,6 +47,9 @@ const obj = {
             circles: ko.observableArray([]),
             required: false,
             comment: 'Документы, без которых невозможно трудоустройство человека на какую бы то ни было должность в компании вне зависимости от граж',
+            draggable: false,
+            draggableClass: '',
+            open: false,
             children: ko.observableArray([])
         },    
         {
@@ -49,7 +58,10 @@ const obj = {
             title: 'Специальные',
             circles: ko.observableArray([]),
             required: false,
-            comment: '',
+            comment: '',            
+            draggable: false,
+            draggableClass: '',
+            open: false,
             children: ko.observableArray([])
         },  
     ])
@@ -59,6 +71,22 @@ function ViewModel() {
     var self = this;
 
     self.categories = obj.children;
+
+    self.graggableEl = null;
+
+    self.setDraggable = function(el) {
+        // if (self.graggableEl) {
+        //     self.graggableEl.draggable = false;
+        //     self.graggableEl.draggableClass = '';
+        // }
+        // self.graggableEl = el;
+        // self.graggableEl.draggable = true;
+        // self.graggableEl.draggableClass = 'draggable';
+        // all el set draggable = false
+        // ser daggable = true to el with id
+        console.log(el.id);
+
+    }
 
     self.relocate = function(id, parentId, newParentId, newPrevId) {
         id = 1; parentId=null; newParentId=null; newPrevId = 3;
