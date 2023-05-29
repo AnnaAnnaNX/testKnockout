@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
     <h3>Документы</h3>
     <input class="search" placeholder="Поиск" />
     <div data-bind="foreach: categories">
@@ -26,34 +25,39 @@
                     <span class="action-button delete-button"></span>
                     <span
                         class="action-button move-button"
-                        data-bind="click: $root.setDraggable($data)"
+                        data-bind="click: $root.setDraggable"
                     ></span>
                 </span>
             </div>
         </div>
         <div data-bind="foreach: children">
-            <div class="child box">
-                <span>
-                    <span data-bind="text: title"></span>
-                    <span data-bind="foreach: circles()">
-                        <span class="circle" data-bind="style: { backgroundColor: color }"></span>
+            <div data-bind="attr: { draggable: draggable, class: draggableClass }">
+                <div class="child box">
+                    <span>
+                        <span data-bind="text: title"></span>
+                        <span data-bind="foreach: circles()">
+                            <span class="circle" data-bind="style: { backgroundColor: color }"></span>
+                        </span>
                     </span>
-                </span>
-                <span>
-                    <span class="action-button edit-button"></span>
-                    <span class="action-button delete-button"></span>
-                    <span
-                        class="action-button move-button"
-                        data-bind="click: $root.setDraggable">
+                    <span>
+                        <span class="action-button edit-button"></span>
+                        <span class="action-button delete-button"></span>
+                        <span
+                            class="action-button move-button"
+                            data-bind="click: $root.setDraggable">
+                        </span>
                     </span>
-                </span>
+                </div>
             </div>
         </div>
     </div>
-    <button data-bind="click: relocate">relocate</button>
-
+    
+    <hr>
+    <pre data-bind="text: ko.toJSON($root, null, 2)"></pre>
 
 </body>
 <script src="./ko.js"></script>
+<script src="./obj.js"></script>
+<script src="./category-module/index.js"></script>
 <script src="./index.js"></script>
 </html>
